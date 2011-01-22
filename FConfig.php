@@ -45,7 +45,7 @@ class FConfig extends CBehavior {
 
         if (isset($this->configs[$name]['parent'])) {
             $parentConfig = $this->loadChain($this->configs[$name]['parent']);
-            $result = CMap::mergeArray($result, $parentConfig);
+            $result = CMap::mergeArray($parentConfig, $result);
         }
 
         return $result;
