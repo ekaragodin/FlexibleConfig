@@ -62,7 +62,7 @@ class FConfig extends CBehavior {
         $path = Yii::getPathOfAlias($this->configDir . '.' . $name) . '.php';
         $config = array();
 
-        if (file_exists($path)) {var_dump($path);
+        if (file_exists($path)) {
             $config = require($path);
             if (is_array($config))
                 return $config;
