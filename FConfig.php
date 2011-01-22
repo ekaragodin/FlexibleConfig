@@ -41,14 +41,17 @@ class FConfig extends CBehavior {
         }
 
         $this->chainConfigs[$name] = $this->loadFromFile($name);
-        $result = $this->chainConfigs[$name];
+        $resultConfig = $this->chainConfigs[$name];
+
+        $localConfig = $this->loadFromFile($name . '_local');
+        $resultConfig = CMap::mergeArray($resultConfig, $localConfig);
 
         if (isset($this->configs[$name]['parent'])) {
             $parentConfig = $this->loadChain($this->configs[$name]['parent']);
-            $result = CMap::mergeArray($parentConfig, $result);
+            $resultConfig = CMap::mergeArray($parentConfig, $resultConfig);
         }
 
-        return $result;
+        return $resultConfig;
     }
 
     /**
@@ -56,11 +59,16 @@ class FConfig extends CBehavior {
      * @return array
      */
     protected function loadFromFile($name) {
-        $config = require(Yii::getPathOfAlias($this->configDir . '.' . $name) . '.php');
-        if (is_array($config))
-            return $config;
-        else
-            return array();
+        $path = Yii::getPathOfAlias($this->configDir . '.' . $name) . '.php';
+        $config = array();
+
+        if (file_exists($path)) {var_dump($path);
+            $config = require($path);
+            if (is_array($config))
+                return $config;
+        }
+
+        return $config;
     }
 
 }
