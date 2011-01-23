@@ -11,7 +11,7 @@ Represents the behavior for the СApplication class. Adds an object with one met
 * Inheritance of configuration files;
 * Automatic load config from *_local.php;
 
-## Настройки
+## Settings
 
 * string FConfig::configDir - path to the configuration file, defaults to 'application.config';
 * array FConfig::configs - array with a list of configurations, key - the name of the configuration, value - an array of configuration settings;
