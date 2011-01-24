@@ -26,8 +26,6 @@ To do this, I have three files in the folder config: main.php - contains general
 
 index.php file I have contains the following code:
 
-~~~
-[php]
 <?php
 
 $yii = 'yii/framework/yii.php';
@@ -54,7 +52,6 @@ Yii::createWebApplication(array(
         ),
     ),
 ))->loadConfigure()->run();
-~~~
 
 In addition to the config folder is a file dev_local.php, which is automatically loaded after dev.php and overrides the necessary local settings.
 
@@ -62,8 +59,6 @@ In addition to the config folder is a file dev_local.php, which is automatically
 
 index.php:
 
-~~~
-[php]
 <?php
 
 $yii='yii/framework/yii.php';
@@ -71,12 +66,9 @@ $config=include(dirname(__FILE__).'/protected/config/main.php');
 
 require_once($yii);
 Yii::createWebApplication($config)->loadConfigure()->run();
-~~~
 
-config/main.php
+config/main.php:
 
-~~~
-[php]
 <?php
 
 if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
@@ -108,4 +100,3 @@ return array(
 		'adminEmail'=>'ekaragodin@gmail.com',
 	),
 );
-~~~

@@ -27,7 +27,6 @@
 Файл index.php у меня содержит следующий код:
 
 
-    [php]
     <?php
 
     $yii = 'yii/framework/yii.php';
@@ -63,7 +62,6 @@
 index.php:
 
 
-    [php]
     <?php
 
     $yii='yii/framework/yii.php';
@@ -75,7 +73,6 @@ index.php:
 config/main.php:
 
 
-    [php]
     <?php
 
     if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
