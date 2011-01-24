@@ -26,32 +26,32 @@ To do this, I have three files in the folder config: main.php - contains general
 
 index.php file I have contains the following code:
 
-<?php
+    <?php
 
-$yii = 'yii/framework/yii.php';
+    $yii = 'yii/framework/yii.php';
 
-// remove the following lines when in production mode
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-// specify how many levels of call stack should be shown in each log message
-defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
+    // remove the following lines when in production mode
+    defined('YII_DEBUG') or define('YII_DEBUG', true);
+    // specify how many levels of call stack should be shown in each log message
+    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
 
-require_once($yii);
-Yii::createWebApplication(array(
-    'behaviors' => array(
-        'fconfig' => array(
-            'class' => 'ext.FlexibleConfig.FConfig',
-            'currentConfig' => 'dev',
-            'configs' => array(
-                'dev' => array(
-                    'parent' => 'main',
-                ),
-                'production' => array(
-                    'parent' => 'main',
+    require_once($yii);
+    Yii::createWebApplication(array(
+        'behaviors' => array(
+            'fconfig' => array(
+                'class' => 'ext.FlexibleConfig.FConfig',
+                'currentConfig' => 'dev',
+                'configs' => array(
+                    'dev' => array(
+                        'parent' => 'main',
+                    ),
+                    'production' => array(
+                        'parent' => 'main',
+                    ),
                 ),
             ),
         ),
-    ),
-))->loadConfigure()->run();
+    ))->loadConfigure()->run();
 
 In addition to the config folder is a file dev_local.php, which is automatically loaded after dev.php and overrides the necessary local settings.
 
@@ -59,44 +59,44 @@ In addition to the config folder is a file dev_local.php, which is automatically
 
 index.php:
 
-<?php
+    <?php
 
-$yii='yii/framework/yii.php';
-$config=include(dirname(__FILE__).'/protected/config/main.php');
+    $yii='yii/framework/yii.php';
+    $config=include(dirname(__FILE__).'/protected/config/main.php');
 
-require_once($yii);
-Yii::createWebApplication($config)->loadConfigure()->run();
+    require_once($yii);
+    Yii::createWebApplication($config)->loadConfigure()->run();
 
 config/main.php:
 
-<?php
+    <?php
 
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
-    defined('YII_DEBUG') or define('YII_DEBUG',true);
-    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
-    define('YII_ENV', 'dev');
-} else {
-    defined('YII_DEBUG') or define('YII_DEBUG',false);
-    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',1);
-    define('YII_ENV', 'production');
-}
+    if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+        defined('YII_DEBUG') or define('YII_DEBUG',true);
+        defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+        define('YII_ENV', 'dev');
+    } else {
+        defined('YII_DEBUG') or define('YII_DEBUG',false);
+        defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',1);
+        define('YII_ENV', 'production');
+    }
 
-return array(
-    'name'=>'My Web Application',
+    return array(
+        'name'=>'My Web Application',
 
-    'behaviors' => array(
-        'fconfig' => array(
-            'class' => 'ext.FlexibleConfig.FConfig',
-            'currentConfig' =>  YII_ENV,
-            'configs' => array(
-                'dev' => array(),
-                'production' => array(),
-                'test' => array(),
+        'behaviors' => array(
+            'fconfig' => array(
+                'class' => 'ext.FlexibleConfig.FConfig',
+                'currentConfig' =>  YII_ENV,
+                'configs' => array(
+                    'dev' => array(),
+                    'production' => array(),
+                    'test' => array(),
+                ),
             ),
         ),
-    ),
 
-	'params'=>array(
-		'adminEmail'=>'ekaragodin@gmail.com',
-	),
-);
+        'params'=>array(
+            'adminEmail'=>'ekaragodin@gmail.com',
+        ),
+    );
