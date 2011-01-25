@@ -60,7 +60,6 @@ class FConfig extends CBehavior {
      */
     protected function loadFromFile($name) {
         $path = Yii::getPathOfAlias($this->configDir . '.' . $name) . '.php';
-        $config = array();
 
         if (file_exists($path)) {
             $config = require($path);
@@ -68,7 +67,7 @@ class FConfig extends CBehavior {
                 return $config;
         }
 
-        return $config;
+        return array();
     }
 
 }
