@@ -32,10 +32,19 @@ class FConfig extends CBehavior {
 
     /**
      * Recursively loads the configuration files.
-     * @param  $name
+     * @param string|array $name
      * @return array
      */
     protected function loadChain($name) {
+        $resultConfig = array();
+
+        if (is_array($name)) {
+            foreach($name as $n) {
+                $resultConfig = CMap::mergeArray($resultConfig, $this->loadChain($n));
+            }
+            return $resultConfig;
+        }
+
         if (isset($this->chainConfigs[$name])) {
             throw new CException('Config "' . $name . '" already load!');
         }
