@@ -46,7 +46,8 @@ class FConfig extends CBehavior {
         }
 
         if (isset($this->chainConfigs[$name])) {
-            throw new CException('Config "' . $name . '" already load!');
+            throw new CException(Yii::t('fconfig', 'Config "{name}" already load!',
+                array('{name}' => $name)));
         }
 
         $this->chainConfigs[$name] = $this->loadFromFile($name);
